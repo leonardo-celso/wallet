@@ -35,3 +35,10 @@ yarn install
 
 # Inicie o app com Expo
 npx expo start
+
+# Inicie o servidor de API mockada (json-server)
+yarn server
+
+# Para que as requisições funcionem corretamente em dispositivos móveis, o baseURL da API deve ser atualizado com o IP local da sua máquina (por exemplo: http://192.168.0.100:3333).
+
+
