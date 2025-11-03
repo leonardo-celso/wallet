@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import AppRoutes from "@/src/routes";
+import { CardsProvider } from "@/src/context/cards";
+import { theme } from "./src/theme/theme";
+import {
+  PTSansCaption_400Regular,
+  PTSansCaption_700Bold,
+  useFonts,
+} from "@expo-google-fonts/pt-sans-caption";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { ThemeProvider } from "styled-components/native";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    PTSansCaption_400Regular,
+    PTSansCaption_700Bold,
+  });
+
+  if (!fontsLoaded) return null;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <NavigationContainer theme={DefaultTheme}>
+        <StatusBar style="dark" backgroundColor="#ffffff" />
+        <CardsProvider>
+          <AppRoutes />
+        </CardsProvider>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
